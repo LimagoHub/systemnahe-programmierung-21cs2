@@ -14,6 +14,11 @@
 #define TOOGLE_BIT(port,bit) port^=(1<<bit)
 
 
+// gelb 500ms
+// rot 1000ms
+// rot gelb 500 ms
+// gruen 1000 ms
+
 void setup()
 {
 	// Datadirectionregister für Port B
