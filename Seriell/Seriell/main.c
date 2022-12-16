@@ -9,36 +9,26 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
+#include "uart.h"
 #define BAUD 9600
 #define MYUBRR F_CPU/16/BAUD-1
+
+#include <stdlib.h>
 
 
 int main(void)
 {
-	// Baudrate 
-	UBRR0H = MYUBRR >> 8;
-	UBRR0L = MYUBRR;
-	
-	// RX Datenempfang aktivieren TX Datensenden aktivieren (DDR nicht notwendig)
-	UCSR0B |= (1 << RXEN0) | (1 << TXEN0); 
-	 
-	//Protokoll
-	UCSR0C |= (1 << UCSZ01) | (1 << UCSZ00); // Set frame: 8data, 1 stp
-	
-	UCSR0B |= (1 << RXCIE0);                    // Enable reciever interrupt
-	
+	uart_init(9600);
 	sei();
 	
 	
     /* Replace with your application code */
     while (1) 
     {
-		//while ( !(UCSR0A & (1 << UDRE0)) )
-		//{
-			//// OK
-		//}
-		//UDR0 = 'A';
-		//_delay_ms(100);
+		uart_send_int(1000);
+		uart_send_string_ln("");
+		
+		_delay_ms(100);
     }
 }
 

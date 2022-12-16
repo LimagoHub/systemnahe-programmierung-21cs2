@@ -26,10 +26,11 @@ int main(void)
 	
 	// Datadirection Pin D6 als Ausgang
 	DDRD |= (1 << DDD6);
+	DDRD |= (1 << DDD5);
 
 	OCR0A = 0xff;  // 256 * Duty / 100
 	// set PWM for 75% duty cycle
-
+	OCR0B = 64;
 
 	TCCR0A |= (1 << COM0A1);
 	// set none-inverting mode
