@@ -12,6 +12,8 @@
 #include <avr/io.h>
 #include <stdlib.h>
 
+// Contract
+
 #define F_CPU 16000000UL
 
 void uart_init(uint32_t baudrate);
